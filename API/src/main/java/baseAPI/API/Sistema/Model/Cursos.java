@@ -15,7 +15,7 @@ public class Cursos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(targetEntity = Instituicao.class)
+    @ManyToOne
     private Instituicao local;
     private String nome;
     private Long ano;

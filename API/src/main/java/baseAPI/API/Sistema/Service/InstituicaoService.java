@@ -15,7 +15,7 @@ import java.util.List;
 public class InstituicaoService {
 
     @Autowired
-    private final InstituicaoRepository repository;
+    private InstituicaoRepository repository;
 
 
     public List<Instituicao> listar(){

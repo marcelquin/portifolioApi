@@ -14,7 +14,7 @@ import java.util.List;
 public class ProjetoslService {
 
     @Autowired
-    private final ProjetoRepository repository;
+    private ProjetoRepository repository;
 
 
     public List<Projetos> listar(){

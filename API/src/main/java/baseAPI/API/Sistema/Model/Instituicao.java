@@ -21,6 +21,6 @@ public class Instituicao {
     private String site;
     @Lob
     private byte[] logo;
-    @OneToMany(mappedBy = "Instituicao")
+    @OneToMany
     private List<Cursos> cursos;
 }

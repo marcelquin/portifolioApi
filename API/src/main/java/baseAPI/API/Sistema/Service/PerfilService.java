@@ -15,7 +15,7 @@ import java.util.List;
 public class PerfilService {
 
     @Autowired
-    private final PerfilRepository repository;
+    private PerfilRepository repository;
 
 
     public List<Perfil> listar(){
