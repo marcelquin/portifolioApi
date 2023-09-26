@@ -1,8 +1,7 @@
 package baseAPI.API.Sistema.Service;
 
-
-import baseAPI.API.Sistema.Model.Habilidades;
-import baseAPI.API.Sistema.Repository.HabilidadesRepository;
+import baseAPI.API.Sistema.Model.Projetos;
+import baseAPI.API.Sistema.Repository.ProjetosRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,13 +19,12 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @Service
 @RequiredArgsConstructor
-public class HabilidadesService {
+public class ProjetosService {
 
     @Autowired
-    HabilidadesRepository repository;
+    ProjetosRepository repository;
 
-
-    public List<Habilidades> listar(){
+    public List<Projetos> listar(){
         try {
             repository.findAll();
         }catch (Exception e) {
@@ -36,7 +34,7 @@ public class HabilidadesService {
          return null;
     }
 
-    public Habilidades buscarPorId(Long id) {
+    public Projetos buscarPorId(Long id) {
     try {
         repository.findById(id);
     }catch (Exception e){
@@ -47,21 +45,21 @@ public class HabilidadesService {
     }
 
     public ResponseEntity<byte[]> verImagemPorId(long id) throws IOException, SQLException {
-        Habilidades entidade = repository.findById(id).get();
+        Projetos entidade = repository.findById(id).get();
         byte[] imageBytes = null;
         imageBytes = entidade.getImagem().getBytes(1, (int) entidade.getImagem().length());
         return ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
     }
 
-    public Habilidades salvar(Habilidades habilidades, MultipartFile file) throws SQLException, IOException
+    public Projetos salvar(Projetos projetos, MultipartFile file) throws SQLException, IOException
     {
         try {
             if(!file.isEmpty()){
                 byte[] bytes = file.getBytes();
                 Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
-                habilidades.setImagem(blob);
+                projetos.setImagem(blob);
             }
-            repository.save(habilidades);
+            repository.save(projetos);
         }catch (Exception e){
             new RuntimeException("ops, algo deu errado");
             e.getMessage();
@@ -70,7 +68,7 @@ public class HabilidadesService {
     }
 
 
-    public Habilidades editar(Long id, Habilidades habilidades, MultipartFile file) throws SQLException, IOException
+    public Projetos editar(Long id, Projetos projetos, MultipartFile file) throws SQLException, IOException
     {
         try {
             if(repository.existsById(id))
@@ -78,9 +76,9 @@ public class HabilidadesService {
                 if(!file.isEmpty()){
                     byte[] bytes = file.getBytes();
                     Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
-                    habilidades.setImagem(blob);
+                    projetos.setImagem(blob);
                 }
-                repository.save(habilidades);
+                repository.save(projetos);
             }
         }catch (Exception e){
             new RuntimeException("ops, algo deu errado");
@@ -89,7 +87,7 @@ public class HabilidadesService {
         return null;
     }
 
-    public Habilidades deletarCurso(Long id)
+    public Projetos deletarCurso(Long id)
     {
         try {
             if(repository.existsById(id))

@@ -1,29 +1,27 @@
 package baseAPI.API.Sistema.Model;
 
-import baseAPI.API.Sistema.Enum.Linguagens;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+import java.awt.*;
+import java.sql.Blob;
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Data
 @Builder
+@Entity
 public class Projetos {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nome;
-    private String descricao;
-    @Enumerated
-    private Linguagens linguagens;
-    @Column(name = "git_Link")
-    private String gitLink;
+    private String descrisao;
+    private String linkGit;
     @Lob
-    private byte[] imagem;
+    private Blob imagem;
 }
-

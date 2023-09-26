@@ -6,24 +6,30 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+import java.sql.Blob;
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Data
 @Builder
+@Entity
 public class Perfil {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nome;
+    @Column(length = 3)
     private Long idade;
-    private String email;
-    private int prefone;
+    @Column(length = 2)
+    private Long prefone;
+    @Column(length = 9)
     private Long telefone;
+    private String email;
     private String linkFacebook;
-    private String linkinstagram;
+    private String linkInstagram;
     private String linkLinkedin;
-    private String linkGit;
+    private String linkGithub;
     @Lob
-    private byte[] imagem;
+    private Blob imgPerfil;
 }

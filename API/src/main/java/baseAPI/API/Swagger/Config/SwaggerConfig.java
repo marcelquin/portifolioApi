@@ -13,9 +13,9 @@ import java.util.List;
 @Configuration
 public class SwaggerConfig {
 
-    private String devUrl = "http://localhost:8088";
+    private String devUrl = "http://localhost:8080";
 
-    private String prodUrl = "http://localhost:8088";
+    private String prodUrl = "http://localhost:8080";
 
     @Bean
     public OpenAPI myOpenAPI() {
@@ -30,15 +30,17 @@ public class SwaggerConfig {
         Contact contact = new Contact();
         contact.setEmail("devquinteiro@gmail.com");
         contact.setName("Mquinteiro");
-        contact.setUrl("");
+        contact.setUrl("https://github.com/marcelquin/portifolioApi");
 
-        License mitLicense = new License().name("MIT License").url("https://choosealicense.com/licenses/mit/");
+        License mitLicense = new License().name("Particular").url("https://github.com/marcelquin/portifolioApi");
+
+
 
         Info info = new Info()
-                .title("baseAPI")
+                .title("API PORTIFÓLIO")
                 .version("1.0")
                 .contact(contact)
-                .description("Base api, com login e swagger funcionais").termsOfService("")
+                .description("API de manipulação de dados a ser consumida pelo portifólio angular").termsOfService("")
                 .license(mitLicense);
 
         return new OpenAPI().info(info).servers(List.of(devServer));

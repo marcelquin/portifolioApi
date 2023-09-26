@@ -1,25 +1,32 @@
 package baseAPI.API.Sistema.Model;
 
+import baseAPI.API.Sistema.Enum.Instituicao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+import java.sql.Blob;
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Data
 @Builder
+@Entity
 public class Cursos {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @ManyToOne
-    private Instituicao local;
+    @Column(length = 150)
+    private String local;
+    @Column(nullable = false, length = 150)
     private String nome;
+    @Column(length = 4)
     private Long ano;
+    private String certificado;
     @Lob
-    private byte[] certificado;
+    private Blob imagem;
 
 }

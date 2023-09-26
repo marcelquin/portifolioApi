@@ -6,18 +6,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+import java.sql.Blob;
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Data
 @Builder
+@Entity
 public class Habilidades {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nome;
-    private String descricao;
+    private String descrisao;
     @Lob
-    private byte[] imagem;
+    private Blob imagem;
+
 }
